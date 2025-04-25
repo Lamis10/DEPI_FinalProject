@@ -36,12 +36,12 @@ public class HomePageTest13 {
         Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"carouselExampleIndicators\"]/div/div[3]/img")).isDisplayed() , "picture did not change");
 
     }
-//    @AfterTest
-//    public void tearDown() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
-//    }
+    @AfterTest
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
 
 
