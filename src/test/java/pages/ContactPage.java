@@ -12,7 +12,13 @@ public class ContactPage {
     WebDriver driver ;
     private By checkText = By.xpath("//div/label[contains(text(), 'Contact Email:')]") ;
     private By contactButton = By.linkText("Contact") ;
-    private By closeButton = By.xpath("//*[@id=\"exampleModal\"]/div/div/div[3]/button[1]") ; ;
+    private By closeButton = By.xpath("//*[@id=\"exampleModal\"]/div/div/div[3]/button[1]") ;
+    private By Email =By.xpath("//*[@id=\"recipient-email\"]");
+    private By NAME =By.xpath("//*[@id=\"recipient-name\"]");
+    private By message =By.xpath("//*[@id=\"message-text\"]");
+    private By message_button= By.xpath("//*[@id=\"exampleModal\"]/div/div/div[3]/button[2]");
+    private By close_button= By.xpath("//*[@id=\"exampleModal\"]/div/div/div[3]/button[1]");
+    ;
     public ContactPage(WebDriver driver){
         this.driver=driver;
     }
@@ -27,4 +33,27 @@ public class ContactPage {
     public void clickClose(){
         driver.findElement(closeButton).click();
     }
+    public void write_email(String email)
+    {
+        driver.findElement(Email).sendKeys(email);
+    }
+    public void write_NAME(String name)
+    {
+        driver.findElement(NAME).sendKeys(name);
+    }
+    public void write_message(String Message)
+    {
+        driver.findElement(message).sendKeys(Message);
+    }
+
+    public void click_message()
+    {
+        driver.findElement(message_button).click();
+    }
+    public void click_close()
+    {
+        driver.findElement(close_button).click();
+    }
+
+
 }
