@@ -36,9 +36,9 @@ public class aboutUs_Test {
         Homepage.click_aboutUs();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        boolean isInvisible = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"example-video\"]/div[5]/div")));
+        WebElement videoModal = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='example-video']/div[5]/div")));
+        Assert.assertFalse(videoModal.isDisplayed(), "TEST2FAILED");
 
-        Assert.assertFalse(isInvisible, "TEST2FAILED");
 
         AboutUs = new AboutusPage(driver);
         AboutUs.click_close();
