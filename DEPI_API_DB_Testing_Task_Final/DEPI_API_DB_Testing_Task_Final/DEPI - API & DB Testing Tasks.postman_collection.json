@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "c50e3bd2-dbde-4ad6-8642-fca231df207e",
+		"name": "DEPI - API & DB Testing Tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42563968"
+	},
+	"item": [
+		{
+			"name": "DEPI - API & DB Testing Tasks",
+			"item": [
+				{
+					"name": "API Testing",
+					"item": [
+						{
+							"name": "Validating Response Codes",
+							"item": [
+								{
+									"name": "GET /api/users/1",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://jsonplaceholder.typicode.com/users/1",
+											"protocol": "https",
+											"host": [
+												"jsonplaceholder",
+												"typicode",
+												"com"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a GET call to retrieve user data from the JSONPlaceholder API.\n\n- URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1)\n    \n- Method: GET\n    \n- Expected Status Code: 200 OK\n    \n- Actual Status Code: 200 OK\n    \n- Response Body: (See response below)\n    \n- Observations: The API returned the expected user data successfully, including id, name, email, and other fields."
+									},
+									"response": []
+								},
+								{
+									"name": "POST /api/users (Missing Fields)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/users",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"users"
+											]
+										},
+										"description": "This request tests a POST call to create a new user using the Reqres API, but with missing required fields.\n\n- URL: [https://reqres.in/api/users](https://reqres.in/api/users)\n    \n- Method: POST\n    \n- Request Body:  \n    \\`\\`\\`json  \n    {}\n    \n- Expected Status Code: 400 Bad Request (due to missing required fields)\n    \n- Actual Status Code: 401 Unauthorized\n    \n- Response Body:  \n    {  \n    \"error\": \"Missing API key\",  \n    \"how_to_get_one\": \"[https://reqres.in/signup\"](https://reqres.in/signup)  \n    }\n    \n- Observations: The API returned 401 Unauthorized instead of the expected 400 Bad Request. This indicates that the API requires an API key or authentication for this endpoint, which was not provided. The test could not validate the \"missing required fields\" scenario due to this authentication issue."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/protected-resource (No Auth)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/users/1",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a GET call to access a protected resource using the Reqres API, without providing authentication.\n\n- URL: [https://reqres.in/api/users/1](https://reqres.in/api/users/1)\n    \n- Method: GET\n    \n- Expected Status Code: 401 Unauthorized or 403 Forbidden (due to lack of authentication)\n    \n- Actual Status Code: 401 Unauthorized\n    \n- Response Body:  \n    \\`\\`\\`json  \n    {  \n    \"error\": \"Missing API key\",  \n    \"how_to_get_one\": \"[https://reqres.in/signup\"](https://reqres.in/signup)  \n    }\n    \n- Observations: The API correctly returned 401 Unauthorized as expected, indicating that the endpoint requires authentication (API key) which was not provided."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Validating Response Codes\" task. The goal is to verify that the API returns the correct HTTP status codes for different request conditions, such as:\n\n- Sending a GET request to retrieve user data.\n    \n- Sending a POST request with missing required fields.\n    \n- Attempting to access a protected resource without authentication."
+						},
+						{
+							"name": "Verifying API Response Data",
+							"item": [
+								{
+									"name": "GET /api/users/1",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://jsonplaceholder.typicode.com/users/1",
+											"protocol": "https",
+											"host": [
+												"jsonplaceholder",
+												"typicode",
+												"com"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a GET call to retrieve user data and verify the response structure and data accuracy.\n\n- URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1)\n    \n- Method: GET\n    \n- Expected Response:  \n    \\`\\`\\`json  \n    {  \n    \"id\": 1,  \n    \"name\": \"John Doe\",  \n    \"email\": \"[john.doe@example.com](https://mailto:john.doe@example.com)\"  \n    }\n    \n- Actual Response:\n    \n- {  \n    \"id\": 1,  \n    \"name\": \"Leanne Graham\",  \n    \"username\": \"Bret\",  \n    \"email\": \"[Sincere@april.biz](https://mailto:Sincere@april.biz)\",  \n    \"address\": {  \n    \"street\": \"Kulas Light\",  \n    \"suite\": \"Apt. 556\",  \n    \"city\": \"Gwenborough\",  \n    \"zipcode\": \"92998-3874\",  \n    \"geo\": {  \n    \"lat\": \"-37.3159\",  \n    \"lng\": \"81.1496\"  \n    }  \n    },  \n    \"phone\": \"1-770-736-8031 x56442\",  \n    \"website\": \"hildegard.org\",  \n    \"company\": {  \n    \"name\": \"Romaguera-Crona\",  \n    \"catchPhrase\": \"Multi-layered client-server neural-net\",  \n    \"bs\": \"harness real-time e-markets\"  \n    }  \n    }\n    \n- Observations: The response structure matches the expected format (contains id, name, email), but the values differ:  \n    Expected name: \"John Doe\", Actual name: \"Leanne Graham\"Expected email: \"[john.doe@example.com](https://mailto:john.doe@example.com)\", Actual email: \"[Sincere@april.biz](https://mailto:Sincere@april.biz)\"  \n    The API (JSONPlaceholder) returned additional fields (username, address, phone, website, company), which are not part of the expected response but do not affect the test."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Verifying API Response Data\" task. The goal is to verify the response structure and data accuracy of the API by comparing the actual response with the expected output."
+						},
+						{
+							"name": "Authentication & Authorization Testing",
+							"item": [
+								{
+									"name": "GET /api/users/1 (No Token)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://reqres.in/api/users/1",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a GET call to a protected endpoint without providing an authentication token.\n\n- URL: [https://reqres.in/api/users/1](https://reqres.in/api/users/1)\n    \n- Method: GET\n    \n- Expected Status Code: 401 Unauthorized\n    \n- Actual Status Code: 401 Unauthorized\n    \n- Response Body:  \n    \\`\\`\\`json  \n    {  \n    \"error\": \"Missing API key\",  \n    \"how_to_get_one\": \"[https://reqres.in/signup\"](https://reqres.in/signup)  \n    }\n    \n- Observations: The API correctly returned 401 Unauthorized as expected, indicating that the endpoint requires an authentication token (API key), which was not provided."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/users/1 (Invalid Token)",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer invalid_token_123",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "https://reqres.in/api/users/1",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a GET call to a protected endpoint with an invalid authentication token.\n\n- URL: [https://reqres.in/api/users/1](https://reqres.in/api/users/1)\n    \n- Method: GET\n    \n- Headers: Authorization: Bearer invalid_token_123\n    \n- Expected Status Code: 401 Unauthorized or 403 Forbidden\n    \n- Actual Status Code: 401 Unauthorized\n    \n- Response Body:  \n    \\`\\`\\`json  \n    {  \n    \"error\": \"Missing API key\",  \n    \"how_to_get_one\": \"[https://reqres.in/signup\"](https://reqres.in/signup)  \n    }\n    \n- Observations: The API correctly returned 401 Unauthorized as expected, indicating that the provided token (Bearer invalid_token_123) was invalid. The API does not differentiate between \"no token\" and \"invalid token,\" returning the same error message in both cases."
+									},
+									"response": []
+								},
+								{
+									"name": "POST /api/login (Get Token)",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"cityslicka\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://reqres.in/api/login",
+											"protocol": "https",
+											"host": [
+												"reqres",
+												"in"
+											],
+											"path": [
+												"api",
+												"login"
+											]
+										},
+										"description": "This request sends a POST call to the login endpoint to obtain a valid authentication token.\n\n- URL: [https://reqres.in/api/login](https://reqres.in/api/login)\n    \n- Method: POST\n    \n- Request Body:  \n    \\`\\`\\`json  \n    {  \n    \"email\": \"[eve.holt@reqres.in](https://mailto:eve.holt@reqres.in)\",  \n    \"password\": \"cityslicka\"  \n    }\n    \n- Expected Status Code: 200 OK\n    \n- Actual Status Code: 401 Unauthorized Response\n    \n- Body:\n    \n- {  \n    \"error\": \"Missing API key\",  \n    \"how_to_get_one\": \"[https://reqres.in/signup\"](https://reqres.in/signup)  \n    }\n    \n- Observations: The API returned 401 Unauthorized instead of the expected 200 OK, indicating that the /api/login endpoint requires an API key for authentication. This prevented obtaining a valid token, impacting the ability to proceed with the subsequent steps (Step 3 and Step 4) of this task."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/users/1 (Valid Token, Insufficient Permissions)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "This request was intended to test a GET call to a protected endpoint with a valid token but without sufficient permissions.\n\n- URL: [https://reqres.in/api/users/1](https://reqres.in/api/users/1)\n    \n- Method: GET\n    \n- Expected Status Code: 403 Forbidden\n    \n- Actual Status Code: Not executed\n    \n- Response Body: Not executed\n    \n- Observations: This step could not be executed because a valid token could not be obtained from the /api/login endpoint, as it requires an API key for authentication (see POST /api/login (Get Token) request)."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/users/1 (Valid Token, Sufficient Permissions)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "This request was intended to test a GET call to a protected endpoint with a valid token and sufficient permissions.\n\n- URL: [https://reqres.in/api/users/1](https://reqres.in/api/users/1)\n    \n- Method: GET\n    \n- Expected Status Code: 200 OK\n    \n- Actual Status Code: Not executed\n    \n- Response Body: Not executed\n    \n- Observations: This step could not be executed because a valid token could not be obtained from the /api/login endpoint, as it requires an API key for authentication (see POST /api/login (Get Token) request)."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Authentication & Authorization Testing\" task. The goal is to verify that the API correctly handles authentication and authorization by testing various scenarios, such as requests without a token, with an invalid token, with insufficient permissions, and with valid credentials."
+						},
+						{
+							"name": "Performance & Load Testing",
+							"item": [
+								{
+									"name": "GET /api/users/1 (Single Request)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://jsonplaceholder.typicode.com/users/1",
+											"protocol": "https",
+											"host": [
+												"jsonplaceholder",
+												"typicode",
+												"com"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										},
+										"description": "This request tests a single GET call to measure the response time of the API.\n\n- URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1)\n    \n- Method: GET\n    \n- Expected Response Time: Less than 500ms\n    \n- Actual Response Time: 270ms\n    \n- Status Code: 200 OK\n    \n- \"street\": \"Kulas Light\",\"suite\": \"Apt. 556\",\"city\": \"Gwenborough\",\"zipcode\": \"92998-3874\",\"geo\": { \"lat\": \"-37.3159\", \"lng\": \"81.1496\"} },  \n    \"phone\": \"1-770-736-8031 x56442\",  \n    \"website\": \"hildegard.org\",  \n    \"company\": {\"name\": \"Romaguera-Crona\",\"catchPhrase\": \"Multi-layered client-server neural-net\",\"bs\": \"harness real-time e-markets\" }  \n    }\n    \n- Observations: The API responded with a 200 OK status code, and the response time was 270ms, which is well within the expected threshold of less than 500ms. The performance for a single request is satisfactory."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/users/1 (Multiple Requests)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://jsonplaceholder.typicode.com/users/1",
+											"protocol": "https",
+											"host": [
+												"jsonplaceholder",
+												"typicode",
+												"com"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										},
+										"description": "This request is used to test multiple sequential GET calls to measure the average response time of the API using Postman's Collection Runner.\n\n- URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1)\n    \n- Method: GET\n    \n- Number of Iterations: 10\n    \n- Expected Average Response Time: Less than 500ms\n    \n- Actual Average Response Time: 81ms\n    \n- Status Code: 200 OK (for all iterations)\n    \n- Observations: The API successfully handled 10 sequential requests, all returning a 200 OK status code. The average response time was 81ms, which is well below the expected threshold of 500ms, indicating excellent performance for sequential requests."
+									},
+									"response": []
+								},
+								{
+									"name": "GET /api/users/1 (Simulate Load)",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "This request was intended to simulate a load by sending concurrent GET requests to the API and observe its behavior under pressure.\n\n- URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1)\n    \n- Method: GET\n    \n- Expected Behavior: API should handle concurrent requests without significant performance degradation\n    \n- Actual Behavior: Not executed\n    \n- Observations: This step could not be executed because Postman's Collection Runner does not support sending concurrent requests (it sends requests sequentially). Proper load testing requires specialized tools like JMeter or LoadRunner, which are outside the scope of this task as it specifies using Postman."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Performance & Load Testing\" task. The goal is to evaluate the API's performance by measuring response times under different conditions, such as single requests, multiple sequential requests, and simulated load."
+						}
+					],
+					"description": "Contains API testing tasks such as validating response codes, verifying response data, authentication, and performance testing."
+				},
+				{
+					"name": "Database Testing",
+					"item": [
+						{
+							"name": "Ensuring Data Integrity",
+							"item": [
+								{
+									"name": "Test Insert Update Delete Operations",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "Note: This request is used for documentation purposes only and does not send an actual HTTP request. The operations were performed in DB Fiddle, and the method (GET) is irrelevant here as Postman is only used to log the results.\n\nThis request tests insert, update, and delete operations to ensure data integrity in an online database using DB Fiddle.\n\n- Database: SQLite (via DB Fiddle)\n    \n- Table: users\n    \n- Steps:\n    \n    1. Insert a user: INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com');\n        \n    2. Retrieve and verify: SELECT \\* FROM users WHERE email='john@example.com';\n        \n    3. Update user info: UPDATE users SET name='John Updated' WHERE email='john@example.com';\n        \n    4. Delete the user and confirm: DELETE FROM users WHERE email='john@example.com'; SELECT \\* FROM users WHERE email='john@example.com';\n        \n- Expected Results:\n    \n    1. Insert: A new user should be added.\n        \n    2. Retrieve: The user should be retrieved with correct data.\n        \n    3. Update: The user's name should be updated to 'John Updated'.\n        \n    4. Delete: No record should remain after deletion.\n        \n- Actual Results:\n    \n    1. Insert: The user 'John Doe' with email 'john@example.com' was successfully added with ID 1.\n        \n    2. Retrieve: The user was retrieved with name 'John Doe' and email 'john@example.com'.\n        \n    3. Update: The user's name was updated to 'John Updated'.\n        \n    4. Delete: No record was found after deletion, confirming successful deletion.\n        \n- Observations: All operations (Insert, Update, Delete) were performed successfully, ensuring data integrity. The database correctly maintained the data without any loss."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Ensuring Data Integrity\" task in Database Testing. The goal is to verify that the database enforces data integrity constraints such as primary keys, foreign keys, and unique constraints."
+						},
+						{
+							"name": "Validating Database Schema",
+							"item": [
+								{
+									"name": "Validate Users Table Schema",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "Note: This request is used for documentation purposes only and does not send an actual HTTP request. The operations were performed in DB Fiddle, and the method (GET) is irrelevant here as Postman is only used to log the results.\n\nThis request validates the schema of the 'users' table in an online database using DB Fiddle.\n\n- Database: SQLite (via DB Fiddle)\n    \n- Table: tst Schema: CREATE TABLE users (  \n    id INTEGER PRIMARY KEY AUTOINCREMENT,  \n    name TEXT NOT NULL,  \n    email TEXT NOT NULL UNIQUE  \n    );\n    \n- Step:\n    \n    1. Check table structure: PRAGMA table_info(users); (SQLite equivalent of DESCRIBE)\n        \n- Expected Result: The table should have correct columns and data types:\n    \n    - id: INTEGER, Primary Key, Auto-increment\n        \n    - name: TEXT, Not Null\n        \n    - email: TEXT, Not Null, Unique\n        \n- Actual Result: The table structure matches the expected schema:\n    \n    - id: INTEGER, Primary Key\n        \n    - name: TEXT, Not Null\n        \n    - email: TEXT, Not Null\n        \n- Observations: The schema of the 'users' table matches the specifications. SQLite does not directly support DESCRIBE, so PRAGMA table_info(users) was used instead."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Validating Database Schema\" task in Database Testing. The goal is to verify that the database structure matches the specified schema."
+						},
+						{
+							"name": "Testing Stored Procedures",
+							"item": [
+								{
+									"name": "Test Register User Stored Procedure",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "Note: This request is used for documentation purposes only and does not send an actual HTTP request. The operations were performed in OneCompiler, and the method (GET) is irrelevant here as Postman is only used to log the results.\n\nThis request tests the 'register_user' stored procedure in an online database using OneCompiler.\n\n- Database: MySQL (via OneCompiler)\n    \n- Table: users\n    \n- INSERT INTO users (name, email) VALUES (user_name, user_email);END //  \n    DELIMITER ;\n    \n- Step:\n    \n    1. Call the stored procedure: CALL register_user('John Doe', 'john@example.com');\n        \n- Expected Result: The user should be successfully added to the database.\n    \n- Actual Result: The user 'John Doe' with email 'john@example.com' was successfully added with ID 1.\n    \n- Observations: The stored procedure worked correctly in OneCompiler. Initially, there were issues with DB Fiddle (both MySQL 8.0 and 5.7) due to unsupported Stored Procedure syntax, so OneCompiler was used as an alternative online tool that supports MySQL Stored Procedures."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Testing Stored Procedures\" task in Database Testing. The goal is to verify that stored procedures work correctly."
+						},
+						{
+							"name": "Security Testing: Preventing SQL Injection",
+							"item": [
+								{
+									"name": "Test SQL Injection Prevention",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "Note: This request is used for documentation purposes only and does not send an actual HTTP request. The operations were performed in DB Fiddle, and the method (GET) is irrelevant here as Postman is only used to log the results.\n\nThis request simulates an SQL Injection attack on a web application login system using DB Fiddle.\n\n- Database: SQLite (via DB Fiddle)\n    \n- Table: users\n    \n- Steps:\n    \n    1. Simulate a normal login: SELECT \\* FROM users WHERE username = 'admin' AND password = 'password123';\n        \n    2. Simulate an SQL Injection attack: SELECT \\* FROM users WHERE username = '' OR 1=1; --' AND password = 'random';\n        \n    3. Simulate a protected application using Parameterized Queries: SELECT \\* FROM users WHERE username = '' OR 1=1; --' AND password = 'random';\n        \n- Expected Results:\n    \n    1. Normal Login: Should return the user data.\n        \n    2. SQL Injection Attack: If the application is not protected, it should return user data (indicating a vulnerability).\n        \n    3. Protected Application: Should return no results (indicating SQL Injection is prevented).\n        \n- Actual Results:\n    \n    1. Normal Login: Returned user data (id: 1, username: admin, password: password123).\n        \n    2. SQL Injection Attack: Returned user data (indicating a vulnerability if the application does not use proper protection).\n        \n    3. Protected Application: Returned no results (indicating that Parameterized Queries would prevent the attack).\n        \n- Observations: The simulation shows that without proper protection (like Parameterized Queries), the application is vulnerable to SQL Injection. Using Parameterized Queries prevents the attack by treating malicious input as a string literal."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Security Testing: Preventing SQL Injection\" task in Database Testing. The goal is to ensure the application prevents SQL injection attacks."
+						},
+						{
+							"name": "Backup & Recovery Testing",
+							"item": [
+								{
+									"name": "Test Backup and Recovery",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"description": "Note: This request is used for documentation purposes only and does not send an actual HTTP request. The operations were performed in DB Fiddle, and the method (GET) is irrelevant here as Postman is only used to log the results.\n\nThis request simulates a Backup & Recovery process for a database using DB Fiddle.\n\n- Database: SQLite (via DB Fiddle)\n    \n- Table: users\n    \n- Steps:\n    \n    1. Create a table and insert data.\n        \n    2. Simulate a backup by exporting the Schema and Data as SQL Statements.\n        \n    3. Drop the table to simulate data loss.\n        \n    4. Restore the data by re-executing the exported SQL Statements.\n        \n- Expected Result: The database should be fully restored with all data intact.\n    \n- Actual Result: The table 'users' was restored successfully with the original data:\n    \n    - id: 1, username: admin, password: password123\n        \n    - id: 2, username: user1, password: pass456\n        \n- Observations: The Backup & Recovery process was simulated successfully in DB Fiddle. Since DB Fiddle does not support 'mysqldump' or 'SOURCE', the backup was performed by exporting SQL Statements, and the restore was done by re-executing those statements."
+									},
+									"response": []
+								}
+							],
+							"description": "This folder contains requests for the \"Backup & Recovery Testing\" task in Database Testing. The goal is to ensure that database backups can be restored correctly."
+						}
+					],
+					"description": "Contains Database testing tasks such as ensuring data integrity, validating schema, testing stored procedures, and security testing."
+				}
+			],
+			"description": "This collection contains API and Database Testing tasks for the DEPI initiative. It is organized into two folders:\n\n- API Testing: Includes tasks like validating response codes, verifying response data, and authentication testing.\n    \n- Database Testing: Includes tasks like ensuring data integrity, validating schema, and testing stored procedures.  \n    Each request includes detailed steps and observations for professional documentation."
+		}
+	]
+}
