@@ -24,7 +24,8 @@ public class signup_Test {
     public void setup() {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\LAMIS\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("https://www.demoblaze.com/index.html");
+      driver.manage().window().maximize();
+      driver.get("https://www.demoblaze.com/index.html");
     }
     @Test(priority = 2)
     public void verify_signup() {
