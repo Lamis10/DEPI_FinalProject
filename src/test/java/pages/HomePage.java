@@ -26,6 +26,12 @@ public class HomePage {
     private By leftArrow = By.xpath("//*[@id=\"carouselExampleIndicators\"]/a[1]/span[1]") ;
     private By categoriesLink = By.xpath("//*[@id=\"cat\"]") ;
     private By image3rdButton = By.xpath("//*[@id=\"carouselExampleIndicators\"]/ol/li[3]") ;
+    private By login_button= By.linkText("Log in");
+    private By signup_button= By.linkText("Sign up");
+    private By aboutUs_button= By.linkText("About us");
+    private By contact_button= By.linkText("Contact");
+
+
 
 
     public List<String> laptopNames = Arrays.asList(
@@ -111,5 +117,22 @@ public class HomePage {
     public void clickImage3rd(){
         driver.findElement(image3rdButton).click();
     }
+    public void click_login()
+    {
+        driver.findElement(login_button).click();
+    }
+    public void click_signup()
+    {
+        driver.findElement(signup_button).click();
+    }
+    public void click_aboutUs()
+    {
+        driver.findElement(aboutUs_button).click();
+    }
+    public void click_contact()
+    {
+        driver.findElement(contact_button).click();
+    }
+
 
 }

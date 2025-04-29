@@ -12,7 +12,9 @@ public class AboutusPage {
     WebDriver driver ;
     private By checkText = By.xpath("//div[@class='modal-header']/h5[contains(text(), 'About us')]") ;
     private By aboutButton = By.linkText("About us") ;
-    private By closeButton = By.xpath("//*[@id=\"videoModal\"]/div/div/div[3]/button") ; ;
+    private By closeButton = By.xpath("//*[@id=\"videoModal\"]/div/div/div[3]/button") ;
+    private By close_button= By.xpath("//*[@id=\"videoModal\"]/div/div/div[3]/button");
+    ;
     public AboutusPage(WebDriver driver){
         this.driver=driver;
     }
@@ -27,4 +29,9 @@ public class AboutusPage {
     public void clickClose(){
         driver.findElement(closeButton).click();
     }
+    public void click_close()
+    {
+        driver.findElement(close_button).click();
+    }
+
 }
