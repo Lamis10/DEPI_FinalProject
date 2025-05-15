@@ -47,8 +47,8 @@ public class contactus_Test4 {
             wait.until(ExpectedConditions.alertIsPresent());
             String alertText = driver.switchTo().alert().getText();
             System.out.println("Alert: " + alertText);
+            Assert.assertFalse(true , "Expected form to reject empty name and message, but it accepted and showed alert: " + alertText);
 
-            Assert.fail("Expected form to reject empty name and message, but it accepted and showed alert: " + alertText);
         } catch (Exception e) {
             System.out.println("No alert appeared, form did not submit, which is expected.");
             Assert.assertTrue(true);

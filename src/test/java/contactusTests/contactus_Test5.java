@@ -48,8 +48,8 @@ public class contactus_Test5 {
             wait.until(ExpectedConditions.alertIsPresent());
             String alertText = driver.switchTo().alert().getText();
             System.out.println("Alert: " + alertText);
+            Assert.assertFalse(true , "Expected validation to reject empty message, but got alert:" + alertText);
 
-            Assert.fail("Expected validation to reject empty message, but got alert: " + alertText);
         } catch (Exception e) {
             System.out.println("No alert appeared — form did not submit with empty message (correct behavior).");
             Assert.assertTrue(true);
