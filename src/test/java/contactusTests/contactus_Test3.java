@@ -49,8 +49,8 @@ public class contactus_Test3 {
             wait.until(ExpectedConditions.alertIsPresent());
             String alertText = driver.switchTo().alert().getText();
             System.out.println("Alert: " + alertText);
+            Assert.assertFalse(true , "Expected validation to reject invalid email, but alert appeared: " + alertText);
 
-            Assert.fail("Expected validation to reject invalid email, but alert appeared: " + alertText);
         } catch (Exception e) {
             System.out.println("No alert appeared, which is expected.");
             Assert.assertTrue(true); // Pass, since no alert means invalid input was rejected

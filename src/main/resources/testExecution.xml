@@ -12,6 +12,7 @@
             <class name="HomePageTests.HomePageTest13"></class>
 
         </classes>
+
     </test>
 
     <test name="categories test cases">
@@ -43,6 +44,22 @@
     <test name="about us test cases">
         <classes>
             <class name="aboutusTests.aboutUs_Test"></class>
+        </classes>
+    </test>
+
+    <test name="cartPage test cases">
+        <classes>
+            <class name="cartPageTests.cartPage_Test1"></class>
+            <class name="cartPageTests.cartPage_Test2"></class>
+            <class name="cartPageTests.cartPage_Test3"></class>
+            <class name="cartPageTests.cartPage_Test4"></class>
+            <class name="cartPageTests.cartPage_Test5"></class>
+        </classes>
+    </test>
+
+    <test name="productPage test cases">
+        <classes>
+            <class name="productPageTests.productPage_Test1"></class>
         </classes>
     </test>
 
